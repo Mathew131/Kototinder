@@ -20,6 +20,6 @@
 </p>
 
 <h3 style="margin-top: 30px;">
-   Ссылка для скачивание apk: <a href = "https://drive.google.com/file/d/1AhNVaNbJOFlqZjOf_rZ4sSrcZjyaXJx2/view?usp=sharing"> https://drive.google.com/file/d/1AhNVaNbJOFlqZjOf_rZ4sSrcZjyaXJx2/view?usp=sharing </a>
+   Ссылка для скачивание apk: <a href = "https://drive.google.com/file/d/1AhNVaNbJOFlqZjOf_rZ4sSrcZjyaXJx2/view?usp=sharing" target="_blank"> https://drive.google.com/file/d/1AhNVaNbJOFlqZjOf_rZ4sSrcZjyaXJx2/view?usp=sharing </a>
    <!-- <a href="">Скачать apk файл</a> -->
 </h3>
