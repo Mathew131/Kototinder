@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'cat_provider.dart';
 import 'locator.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class DeleteCatsButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -88,10 +89,14 @@ class _LikedCatsState extends State<LikedCats> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.network(
-                          filteredCats[i]['url'],
+                        CachedNetworkImage(
+                          imageUrl: filteredCats[i]['url'],
                           width: MediaQuery.of(context).size.width * 0.5,
                           fit: BoxFit.cover,
+                          placeholder:
+                              (context, url) => CircularProgressIndicator(),
+                          errorWidget:
+                              (context, url, error) => Icon(Icons.error),
                         ),
                         Column(
                           children: [

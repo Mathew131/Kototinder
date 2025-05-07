@@ -23,28 +23,11 @@ class _CatPageState extends State<CatPage> {
     _RandomCat();
   }
 
-  void _showErrorDialog(String message) {
-    showDialog(
-      context: context,
-      builder:
-          (context) => AlertDialog(
-            title: const Text('Ошибка сети'),
-            content: Text(message),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('ОК'),
-              ),
-            ],
-          ),
-    );
-  }
-
   Future<void> _RandomCat() async {
-    data = await CatApi.FutureRandomCat();
+    final api = CatApi();
+    data = await api.FutureRandomCat();
 
     if (data == null) {
-      _showErrorDialog('Ошибка загрузки кота');
       return;
     }
     if (data is List && data.isNotEmpty) {
@@ -70,6 +53,7 @@ class _CatPageState extends State<CatPage> {
 
   void _onLike() {
     setState(() {
+      // print(data.isNotEmpty);
       if (data is List && data.isNotEmpty) {
         final catData = data.first;
         List<dynamic>? breeds = catData['breeds'];

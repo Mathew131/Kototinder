@@ -1,12 +1,16 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:retry/retry.dart';
 
 class CatApi {
-  static Future<dynamic> FutureRandomCat() async {
+  final _r = RetryOptions(maxAttempts: 50);
+
+  Future<dynamic> FutureRandomCat() {
     final url = Uri.parse(
       'https://api.thecatapi.com/v1/images/search?has_breeds=1',
     );
-    try {
+
+    return _r.retry(() async {
       final response = await http.get(
         url,
         headers: {
@@ -14,15 +18,9 @@ class CatApi {
               'live_NeHytbCpapkmF1vIGISn4dV7zkrxSAy0Su6uCCmtw5OVUgTIQbQKEQ4g2s08n4IE',
         },
       );
-      if (response.statusCode == 200) {
-        dynamic data = jsonDecode(response.body);
-
-        return data;
-      } else {
-        return null;
-      }
-    } catch (e) {
-      return null;
-    }
+      if (response.statusCode != 200)
+        throw Exception('status ${response.statusCode}');
+      return jsonDecode(response.body) as List<dynamic>;
+    }, retryIf: (_) => true);
   }
 }
