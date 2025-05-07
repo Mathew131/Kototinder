@@ -53,7 +53,6 @@ class _CatPageState extends State<CatPage> {
 
   void _onLike() {
     setState(() {
-      // print(data.isNotEmpty);
       if (data is List && data.isNotEmpty) {
         final catData = data.first;
         List<dynamic>? breeds = catData['breeds'];
